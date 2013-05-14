@@ -11,6 +11,7 @@ class Click(models.Model):
     date = models.DateTimeField(auto_now_add=True, editable=False)
     referer = models.CharField(max_length=512)
     ip_addr = models.IPAddressField(blank=True, null=True)
+    url = models.URLField(_(u'url'), blank=True, )
 
     content_object = generic.GenericForeignKey()
 

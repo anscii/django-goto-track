@@ -43,6 +43,7 @@ def goto_url(request):
                 
                 counter.referer = request.META.get('HTTP_REFERER','')
                 counter.ip_addr = ip_addr
+                counter.url = url
 
                 counter.save()
         except:
