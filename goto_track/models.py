@@ -22,3 +22,13 @@ class Click(models.Model):
 
     def __unicode__(self):
         return _(u"%s visited link to %s on %s") % (self.user, self.content_object, self.date)
+
+    def store(self, request, url, *args, **kwargs):
+        self.ip_addr = request.META.get('REMOTE_ADDR','')
+        user = None
+        if request.user.is_authenticated():
+            user = request.user
+        self.user = user
+        self.referer = request.META.get('HTTP_REFERER','')
+        self.url = url
+        super(Click, self).save(*args, **kwargs)
